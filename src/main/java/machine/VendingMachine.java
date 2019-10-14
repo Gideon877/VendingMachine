@@ -3,7 +3,7 @@ package machine;
 import machine.exceptions.*;
 import machine.products.*;
 
-public abstract class VendingMachine {
+public class VendingMachine {
 
     static int softDrinks;
     static int saltySnacks;
