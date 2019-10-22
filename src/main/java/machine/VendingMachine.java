@@ -14,7 +14,7 @@ public class VendingMachine {
 
         SoftDrink coke = new SoftDrink("Coke", "500ml", 9);
         Chocolate barOne = new Chocolate("Bar One", "100g", 11);
-        SaltySnack peanuts = new SaltySnack("Peanuts", "500g", 34);
+//        SaltySnack peanuts = new SaltySnack("Peanuts", "500g", 34);
 
         addStock(coke, 2 );
         addStock(barOne, 2 );

@@ -1,0 +1,11 @@
+/Users/gideon877/projects/java/vendingmachine/src/main/java/machine/products/SoftDrink.java
+/Users/gideon877/projects/java/vendingmachine/src/main/java/machine/products/SaltySnack.java
+/Users/gideon877/projects/java/vendingmachine/src/main/java/machine/exceptions/ChocolatesAllGoneException.java
+/Users/gideon877/projects/java/vendingmachine/src/main/java/machine/exceptions/SaltyCracksAllEatenException.java
+/Users/gideon877/projects/java/vendingmachine/src/main/java/machine/MaxiVendingMachine.java
+/Users/gideon877/projects/java/vendingmachine/src/main/java/machine/exceptions/SoftDrinksOutOfStockException.java
+/Users/gideon877/projects/java/vendingmachine/src/main/java/machine/products/Product.java
+/Users/gideon877/projects/java/vendingmachine/src/main/java/machine/exceptions/ProductNotFoundException.java
+/Users/gideon877/projects/java/vendingmachine/src/main/java/machine/exceptions/InvalidProductException.java
+/Users/gideon877/projects/java/vendingmachine/src/main/java/machine/products/Chocolate.java
+/Users/gideon877/projects/java/vendingmachine/src/main/java/machine/VendingMachine.java

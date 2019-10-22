@@ -18,6 +18,15 @@ class VendingMachineTest {
     }
 
     @Test
+    void buyProduct() throws ProductNotFoundException {
+        Product beer = new Product("Beer","Alcohol",20);
+        vendingMachine.addStock(beer, 1);
+
+        assertEquals(vendingMachine.getStock(beer), 0);
+        assertThrows(InvalidProductException.class, () -> vendingMachine.buy(beer));
+    }
+
+    @Test
     void buyChocolate() throws ProductNotFoundException {
         final Chocolate barOne = new Chocolate("Bar One", "100g", 11);
         vendingMachine.addStock(barOne, 1);

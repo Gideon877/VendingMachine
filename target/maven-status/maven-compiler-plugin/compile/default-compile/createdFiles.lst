@@ -1,0 +1,11 @@
+machine/products/Chocolate.class
+machine/products/SaltySnack.class
+machine/exceptions/InvalidProductException.class
+machine/exceptions/SoftDrinksOutOfStockException.class
+machine/exceptions/ChocolatesAllGoneException.class
+machine/MaxiVendingMachine.class
+machine/products/Product.class
+machine/exceptions/ProductNotFoundException.class
+machine/VendingMachine.class
+machine/products/SoftDrink.class
+machine/exceptions/SaltyCracksAllEatenException.class
