@@ -21,8 +21,6 @@ public class VendingMachine {
         addStock(beer, 2 );
 
         buy(coke);
-//        buy(beer);
-
 
         System.out.println(getStock(coke));
         System.out.println(getStock(barOne));

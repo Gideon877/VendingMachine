@@ -28,18 +28,19 @@ public abstract class MaxiVendingMachine extends VendingMachine {
         else chocolates --;
     }
 
-    public static void buy(SoftDrink softDrink, int qty) throws SoftDrinksOutOfStockException {
-        if((softDrinks - qty) < 0) throw new SoftDrinksOutOfStockException(softDrink);
-        else softDrinks --;
+    public static void addStock(SoftDrink softDrink) {
+        softDrinks ++;
     }
 
-    public static void buy(SaltySnack saltySnack, int qty) throws SaltyCracksAllEatenException {
-        if((saltySnacks - qty) < 0) throw new SaltyCracksAllEatenException(saltySnack);
-        else saltySnacks --;
+    public static void addStock(SaltySnack saltySnack) {
+        saltySnacks ++;
     }
 
-    public static void buy(Chocolate chocolate, int qty) throws ChocolatesAllGoneException {
-        if((chocolates - qty) < 0) throw new ChocolatesAllGoneException(chocolate);
-        else chocolates --;
+    public static void addStock(Chocolate chocolate) {
+        chocolates ++;
+    }
+
+    public static void addStock(Product product) throws InvalidProductException {
+        throw new InvalidProductException();
     }
 }
