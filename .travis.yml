@@ -1,10 +1,10 @@
 language: java
-script:
-  - mvn flyway:migrate test -B
+#script:
+#  - mvn flyway:migrate test -B
 jdk:
   - oraclejdk8
-  - oraclejdk9
-  - openjdk8
+#  - oraclejdk9
+#  - openjdk8
 addons:
   apt:
     packages:
