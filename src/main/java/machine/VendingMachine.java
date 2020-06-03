@@ -24,6 +24,7 @@ public class VendingMachine {
 
         System.out.println(getStock(coke));
         System.out.println(getStock(barOne));
+        System.out.println("Total stock: " + getStock());
     }
 
     public static void buy(Product product) throws ProductNotFoundException {
@@ -68,5 +69,9 @@ public class VendingMachine {
             return chocolates;
         }
         return 0;
+    }
+
+    public static int getStock() {
+        return chocolates + softDrinks + saltySnacks;
     }
 }
