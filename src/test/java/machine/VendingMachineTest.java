@@ -19,7 +19,7 @@ class VendingMachineTest {
 
     @Test
     void buyProduct() throws ProductNotFoundException {
-        Product beer = new Product("Beer","Alcohol",20);
+        Product beer = new Product(ProductType.softdrink);
         vendingMachine.addStock(beer, 1);
 
         assertEquals(vendingMachine.getStock(beer), 0);
@@ -28,32 +28,32 @@ class VendingMachineTest {
 
     @Test
     void buyChocolate() throws ProductNotFoundException {
-        final Chocolate barOne = new Chocolate("Bar One", "100g", 11);
+        final Chocolate barOne = new Chocolate(ProductType.chocolate);
         vendingMachine.addStock(barOne, 1);
         vendingMachine.buy(barOne);
 
         assertEquals(vendingMachine.getStock(barOne), 0);
         assertThrows(ChocolatesAllGoneException.class, () -> vendingMachine.buy(barOne));
-        assertThrows(InvalidProductException.class, () -> vendingMachine.buy(new Product("Beer", "340ml", 14)));
+        assertThrows(InvalidProductException.class, () -> vendingMachine.buy(new Product(ProductType.softdrink)));
     }
     @Test
     void buySoftDrink() throws ProductNotFoundException {
-        SoftDrink coke = new SoftDrink("Coke", "500ml", 9);
+        SoftDrink coke = new SoftDrink(ProductType.softdrink);
         vendingMachine.addStock(coke, 1);
         vendingMachine.buy(coke);
 
         assertEquals(vendingMachine.getStock(coke), 0);
         assertThrows(SoftDrinksOutOfStockException.class, () -> vendingMachine.buy(coke));
-        assertThrows(InvalidProductException.class, () -> vendingMachine.buy(new Product("Beer", "340ml", 14)));
+        assertThrows(InvalidProductException.class, () -> vendingMachine.buy(new Product(ProductType.softdrink)));
     }
     @Test
     void buySaltySnack() throws ProductNotFoundException {
-        SaltySnack peanuts = new SaltySnack("Peanuts", "500g", 34);
+        SaltySnack peanuts = new SaltySnack(ProductType.saltysnack);
         vendingMachine.addStock(peanuts, 1);
         vendingMachine.buy(peanuts);
 
         assertEquals(vendingMachine.getStock(peanuts), 0);
         assertThrows(SaltyCracksAllEatenException.class, () -> vendingMachine.buy(peanuts));
-        assertThrows(InvalidProductException.class, () -> vendingMachine.buy(new Product("Beer", "340ml", 14)));
+        assertThrows(InvalidProductException.class, () -> vendingMachine.buy(new Product(ProductType.softdrink)));
     }
 }

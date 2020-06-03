@@ -9,24 +9,6 @@ public class VendingMachine {
     static int saltySnacks;
     static int chocolates;
 
-    public static void main(String[] args) throws ProductNotFoundException {
-        Product beer = new Product("Beer", "500ml", 9);
-
-        SoftDrink coke = new SoftDrink("Coke", "500ml", 9);
-        Chocolate barOne = new Chocolate("Bar One", "100g", 11);
-//        SaltySnack peanuts = new SaltySnack("Peanuts", "500g", 34);
-
-        addStock(coke, 2 );
-        addStock(barOne, 2 );
-        addStock(beer, 2 );
-
-        buy(coke);
-
-        System.out.println(getStock(coke));
-        System.out.println(getStock(barOne));
-        System.out.println("Total stock: " + getStock());
-    }
-
     public static void buy(Product product) throws ProductNotFoundException {
 
         if(product instanceof SoftDrink) {

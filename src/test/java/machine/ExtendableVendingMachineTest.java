@@ -3,6 +3,7 @@ package machine;
 import machine.exceptions.ProductNotFoundException;
 import machine.products.Chocolate;
 import machine.products.Product;
+import machine.products.ProductType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -17,12 +18,12 @@ class ExtendableVendingMachineTest {
         @DisplayName("Adding two Products")
         @Test
         void add__product_1 () {
-            ExtendableVendingMachine extendableVM = new ExtendableVendingMachine();
-            Product chocolate = new Chocolate("Bar One", "100g", 11);
-            assertEquals(0, extendableVM.getStock(chocolate));
+            ExtendableVendingMachine extendableVendingMachine = new ExtendableVendingMachine();
+            Product chocolate = new Chocolate(ProductType.chocolate);
+            assertEquals(0, extendableVendingMachine.getStock(chocolate));
 
-            extendableVM.addStock(chocolate, 5);
-            assertEquals(5, extendableVM.getStock(chocolate));
+            extendableVendingMachine.addStock(chocolate, 5);
+            assertEquals(5, extendableVendingMachine.getStock(chocolate));
         }
     }
 
@@ -31,9 +32,9 @@ class ExtendableVendingMachineTest {
     class Buy {
         @DisplayName("Buying two Products")
         @Test
-        void buy__product_1 () throws ProductNotFoundException {
+        void buy__product_1 () {
             ExtendableVendingMachine extendableVM = new ExtendableVendingMachine();
-            Product chocolate = new Chocolate("Bar One", "100g", 11);
+            Product chocolate = new Chocolate(ProductType.saltysnack);
             assertEquals(0, extendableVM.getStock(chocolate));
 
             extendableVM.addStock(chocolate, 5);

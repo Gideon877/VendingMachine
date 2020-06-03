@@ -1,41 +1,70 @@
 package machine;
 
-import machine.exceptions.ProductNotFoundException;
+import machine.products.Chocolate;
 import machine.products.Product;
+import machine.products.SaltySnack;
+import machine.products.SoftDrink;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ExtendableVendingMachine {
-    Map<Product, Integer> products = new HashMap<>();
 
-    public void buy(Product product, int qty) throws ProductNotFoundException {
-        if(qty < 0) return;
-        if(products.containsKey(product)) {
-            int count = products.get(product);
-            int balance = count - qty;
-            if(balance >= 0) {
-                products.put(product, balance);
-            }
-            return;
-        }
-        throw new ProductNotFoundException(product);
-    }
+    Map<Product, Integer> stock = new HashMap<>();
 
-    public void addStock(Product product, int qty) {
-        if(qty < 0) return;
-        if(products.containsKey(product)) {
-            int count = products.get(product);
-            products.put(product, count + qty);
-            return;
-        }
-        products.put(product, qty);
+    public Map<Product, Integer> getStock() {
+        return stock;
     }
 
     public int getStock(Product product) {
-        if(products.containsKey(product)) {
-            return products.get(product);
+        if(stock.containsKey(product)) {
+            return stock.get(product);
         }
-        return 0;
+        return getAllStock();
+    }
+
+    private int getAllStock() {
+        int total = 0;
+        for (Product product: stock.keySet()) {
+            total += stock.get(product);
+        }
+        return total;
+    }
+
+    public void addStock(Product product, int qty) {
+        if(product instanceof Chocolate) {
+            stock.put(product, qty);
+        }
+
+        if(product instanceof SaltySnack) {
+            stock.put(product, qty);
+        }
+
+        if(product instanceof SoftDrink) {
+            stock.put(product, qty);
+        }
+    }
+
+    public void buy(Product product, int qty) {
+        if(product instanceof  Chocolate) {
+            int chocolatesQty = stock.get(product) - qty;
+            if(chocolatesQty >= 0) {
+                stock.put(product, chocolatesQty);
+            }
+        }
+
+        if(product instanceof  SaltySnack) {
+            int saltySnacksQty = stock.get(product) - qty;
+            if(saltySnacksQty >= 0) {
+                stock.put(product, saltySnacksQty);
+            }
+        }
+
+        if(product instanceof  SoftDrink) {
+            int softDrinkQty = stock.get(product) - qty;
+            if(softDrinkQty >= 0) {
+                stock.put(product, softDrinkQty);
+            }
+        }
     }
 }

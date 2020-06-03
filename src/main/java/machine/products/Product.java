@@ -4,15 +4,15 @@ public class Product {
 
     private final String productName;
     private final String description;
-    private final int amount;
+    private final double amount;
 
-    public Product(String name, String description, int amount) {
-        this.productName = name;
-        this.description = description;
-        this.amount = amount;
+    public Product(ProductType productType) {
+        this.productName = productType.getProductName();
+        this.amount = productType.getAmount();
+        this.description = productType.getDescription();
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
