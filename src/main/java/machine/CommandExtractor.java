@@ -1,12 +1,13 @@
 package machine;
 
+import machine.exceptions.InvalidProductException;
+import machine.products.Product;
 import machine.products.ProductType;
 
 public class CommandExtractor {
     private final String command;
     private final String product;
     private final int qty;
-    private StringMethods stringMethods = new StringMethods();
 
     public CommandExtractor(String command) {
         String[] commandParts = command.split(" ");
@@ -17,7 +18,7 @@ public class CommandExtractor {
         if(commandParts.length >= 2) {
             this.product = commandParts[1].toLowerCase();
         } else {
-            this.product = "Snacks";
+            this.product = "";
         }
         //Get product entered quantity value and setting it to a default value if is not provided
         if(commandParts.length == 3) {
@@ -35,11 +36,15 @@ public class CommandExtractor {
         return qty;
     }
 
-    public ProductType getProductType() {
+    boolean hasProductType () {
+        return !product.isEmpty();
+    }
+
+    public ProductType getProductType() throws InvalidProductException {
         try {
             return ProductType.valueOf(product);
         } catch (Exception e) {
-            return ProductType.snacks;
+            return ProductType.other;
         }
     }
 }

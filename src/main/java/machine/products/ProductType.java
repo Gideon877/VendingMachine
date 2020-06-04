@@ -1,7 +1,7 @@
 package machine.products;
 
 public enum ProductType {
-    snacks("all", "All products", 28.59),
+    other("selected product", "out of stock", 28.59),
     chocolate("chocolate", "Nuts and Rum 50g", 6.99),
     saltysnack("saltysnack", "Peanuts and Raisins 10g", 9.95),
     softdrink("softdrink", "Coke Zero 500ml", 11.59);

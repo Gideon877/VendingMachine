@@ -1,10 +1,8 @@
 package machine;
 
-import machine.products.Chocolate;
-import machine.products.Product;
 import machine.products.ProductType;
 
-import static machine.products.ProductType.snacks;
+import static machine.products.ProductType.other;
 
 public class CommandProcessor {
     private final CommandExtractor commandExtractor;
@@ -21,51 +19,59 @@ public class CommandProcessor {
         }
 
         if(getCommand().equalsIgnoreCase("buy")) {
-            return "Buying stock: ";
+            return buy();
         }
 
         if(getCommand().equalsIgnoreCase("get")) {
-            try {
-
-                if(getProductType().equals(snacks)) {
-                    return extendableVendingMachine.getStock().toString();
-                } else {
-                    int total = extendableVendingMachine.getStock(new Product(getProductType()));
-                    return "Total stock: " + total;
-                }
-            } catch (Exception e) {
-                return "Failed to get product";
-            }
+            return get();
         }
 
         if(getCommand().equalsIgnoreCase("help") || getCommand().equalsIgnoreCase("h")) {
             return new StringMethods().help();
         }
+
         return new StringMethods().invalid(getCommand());
+    }
+
+    private String buy() {
+        try {
+            if(getProductType().equals(other)) throw new Exception();
+            if(commandExtractor.hasProductType() && getQty() > 0) {
+                extendableVendingMachine.buy(getProductType(), getQty());
+                return String.format("Bought %s at value of R%s.", getProductType().getProductName(), getProductType().getAmount());
+            }
+            throw new Exception();
+        } catch (Exception e) {
+            return "Failed to buy " + commandExtractor.getProductType().getProductName();
+        }
+    }
+
+    private String get() {
+        try {
+            if(getProductType().equals(other)) throw new Exception();
+            return String.format("%s: %s", getProductType().getProductName(), extendableVendingMachine.getStock(getProductType()));
+        } catch (Exception e) {
+            return String.format("total stock: %s", extendableVendingMachine.getStock());
+        }
     }
 
     private String add() {
         try {
-//            extendableVendingMachine.addStock(new Product(getProductType()), getQty());
-            if(getProductType().equals(ProductType.chocolate)) {
-                extendableVendingMachine.addStock(new Chocolate(getProductType()), getQty());
-
-            } else {
-                System.out.println("Not chocolate");
+            if(getProductType().equals(other)) throw new Exception();
+            if(commandExtractor.hasProductType() && getQty() > 0) {
+                extendableVendingMachine.addStock(getProductType(), getQty());
+                return String.format("Added %s %s to stock.", getQty(), getProductType().getProductName());
             }
-
-            return String.format("Added %s %s to stock.", getQty(), getProductType().getProductName());
+            throw new Exception();
         } catch (Exception e) {
-            return "Failed to add product";
+            return "Failed to add " + commandExtractor.getProductType().getProductName();
         }
     }
 
     private String getCommand() {
         return commandExtractor.getCommand();
     }
-    private ProductType getProductType() {
-        return commandExtractor.getProductType();
-    }
+    private ProductType getProductType() { return commandExtractor.getProductType(); }
     private int getQty() {
         return commandExtractor.getQty();
     }

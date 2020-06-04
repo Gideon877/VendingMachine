@@ -6,3 +6,9 @@ public class App {
         command.menu();
     }
 }
+
+
+/**
+ * todo: redo buy method and add exceptions
+ * todo: add tests for ll classes
+ * */

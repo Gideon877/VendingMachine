@@ -1,5 +1,6 @@
 package machine;
 
+import machine.exceptions.InvalidProductException;
 import machine.products.ProductType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -27,6 +28,24 @@ class CommandExtractorTest {
         @Test
         void getProductType() {
             assertEquals(ProductType.saltysnack, commandExtractor.getProductType());
+        }
+
+
+
+        @DisplayName("command without args")
+        @Nested
+        class ErrorHandling {
+            @Test
+            void hasProductType() {
+                assertFalse(new CommandExtractor("add").hasProductType());
+                assertTrue(new CommandExtractor("add chocolate").hasProductType());
+            }
+
+            @Test
+            void throws_error_2() {
+                assertThrows(InvalidProductException.class,() -> new CommandExtractor("add").getProductType());
+                assertThrows(InvalidProductException.class,() -> new CommandExtractor("add fish").getProductType());
+            }
         }
     }
 

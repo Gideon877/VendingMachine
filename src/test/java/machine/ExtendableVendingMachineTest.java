@@ -1,7 +1,5 @@
 package machine;
 
-import machine.exceptions.ProductNotFoundException;
-import machine.products.Chocolate;
 import machine.products.Product;
 import machine.products.ProductType;
 import org.junit.jupiter.api.DisplayName;
@@ -19,11 +17,11 @@ class ExtendableVendingMachineTest {
         @Test
         void add__product_1 () {
             ExtendableVendingMachine extendableVendingMachine = new ExtendableVendingMachine();
-            Product chocolate = new Chocolate(ProductType.chocolate);
-            assertEquals(0, extendableVendingMachine.getStock(chocolate));
+            ProductType product = ProductType.chocolate;
+            assertEquals(0, extendableVendingMachine.getStock(product));
 
-            extendableVendingMachine.addStock(chocolate, 5);
-            assertEquals(5, extendableVendingMachine.getStock(chocolate));
+            extendableVendingMachine.addStock(product, 5);
+            assertEquals(5, extendableVendingMachine.getStock(product));
         }
     }
 
@@ -34,22 +32,22 @@ class ExtendableVendingMachineTest {
         @Test
         void buy__product_1 () {
             ExtendableVendingMachine extendableVM = new ExtendableVendingMachine();
-            Product chocolate = new Chocolate(ProductType.saltysnack);
-            assertEquals(0, extendableVM.getStock(chocolate));
+            ProductType product = ProductType.saltysnack;
+            assertEquals(0, extendableVM.getStock(product));
 
-            extendableVM.addStock(chocolate, 5);
-            assertEquals(5, extendableVM.getStock(chocolate));
+            extendableVM.addStock(product, 5);
+            assertEquals(5, extendableVM.getStock(product));
 
-            extendableVM.buy(chocolate, 3);
-            assertEquals(2, extendableVM.getStock(chocolate));
+            extendableVM.buy(product, 3);
+            assertEquals(2, extendableVM.getStock(product));
 
             // new instance don't affect old one
-//            extendableVM.buy(new Chocolate("Bar One", "100g", 11), 1);
-//            assertEquals(2, extendableVM.getStock(chocolate));
+//            extendableVM.buy(new product("Bar One", "100g", 11), 1);
+//            assertEquals(2, extendableVM.getStock(product));
 
 //            buying over qty
-            extendableVM.buy(chocolate, 10);
-            assertEquals(2, extendableVM.getStock(chocolate));
+            extendableVM.buy(product, 10);
+            assertEquals(2, extendableVM.getStock(product));
 
         }
     }
